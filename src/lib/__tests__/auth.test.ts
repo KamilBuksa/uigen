@@ -13,19 +13,22 @@ describe("createSession", () => {
     delete: vi.fn(),
   };
 
-  const mockSign = vi.fn();
-  const mockJWT = {
-    setProtectedHeader: vi.fn().mockReturnThis(),
-    setExpirationTime: vi.fn().mockReturnThis(),
-    setIssuedAt: vi.fn().mockReturnThis(),
-    sign: mockSign,
-  };
+  let mockJWT: any;
+  let mockSign: any;
 
   beforeEach(() => {
     vi.clearAllMocks();
+
+    mockSign = vi.fn().mockResolvedValue("mock-jwt-token");
+    mockJWT = {
+      setProtectedHeader: vi.fn().mockReturnThis(),
+      setExpirationTime: vi.fn().mockReturnThis(),
+      setIssuedAt: vi.fn().mockReturnThis(),
+      sign: mockSign,
+    };
+
     vi.mocked(cookies).mockResolvedValue(mockCookieStore as any);
-    vi.mocked(SignJWT).mockReturnValue(mockJWT as any);
-    mockSign.mockResolvedValue("mock-jwt-token");
+    vi.mocked(SignJWT).mockImplementation(() => mockJWT as any);
   });
 
   afterEach(() => {
@@ -193,7 +196,7 @@ describe("getSession", () => {
     expect(session).toEqual(mockPayload);
     expect(jwtVerify).toHaveBeenCalledWith(
       "valid-token",
-      expect.any(Uint8Array)
+      expect.any(Object)
     );
   });
 

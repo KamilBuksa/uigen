@@ -7,4 +7,9 @@ export default defineConfig({
   test: {
     environment: 'jsdom',
   },
+  resolve: {
+    alias: {
+      'server-only': new URL('./src/lib/__mocks__/server-only.ts', import.meta.url).pathname,
+    },
+  },
 })
