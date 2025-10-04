@@ -161,3 +161,4 @@ If `ANTHROPIC_API_KEY` is not set, the app uses a mock provider that returns sta
 
 - Use comments sparingly. Only comment complex code.
 - The database schema is defines in the @prisma/schema.prisma files. Reference it anytime you need to understand the structure of data stored in the database.
+- vitest config is in vitest.config.mts
