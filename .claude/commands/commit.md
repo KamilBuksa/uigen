@@ -10,6 +10,6 @@ Do the following:
    - Summarizes the nature of changes (add/update/fix/refactor)
    - Focuses on "why" rather than "what"
    - Follows the repository's commit style
-   - Ends with the standard co-author footer
+   - Does NOT include Claude Code footer or co-author attribution
 
 Do NOT push unless explicitly requested.
